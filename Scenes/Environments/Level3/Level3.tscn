@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://5mr0ldh668jx"]
+
+[ext_resource type="PackedScene" uid="uid://cxhf3nh4k4qrv" path="res://Scenes/User/User.tscn" id="1_kgtrv"]
+[ext_resource type="PackedScene" uid="uid://bqeaojnlwvebj" path="res://Scenes/Tools/CompletionBar/CompletionBar.tscn" id="2_5lpr1"]
+[ext_resource type="PackedScene" uid="uid://c48505en51lan" path="res://Scenes/Environments/Rails/Rail.tscn" id="3_5lpr1"]
+[ext_resource type="PackedScene" uid="uid://bnikhqait62ig" path="res://Scenes/Units/Asteroid/Asteroid.tscn" id="4_ec72p"]
+
+[node name="Level3" type="Node3D"]
+
+[node name="User" parent="." instance=ExtResource("1_kgtrv")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0)
+
+[node name="CompletionBar" parent="." instance=ExtResource("2_5lpr1")]
+offset_top = -2.0
+offset_bottom = -2.0
+delayOffset = 0.1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.820711, -0.447901, -0.354709, 0.571344, 0.64339, 0.509524, 0, -0.620833, 0.783943, -12.6892, 0, 2.30574)
+
+[node name="BottomWall" parent="." instance=ExtResource("3_5lpr1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+
+[node name="TopWall" parent="." instance=ExtResource("3_5lpr1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15.57)
+
+[node name="LeftWall" parent="." instance=ExtResource("3_5lpr1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -24, 0, 0)
+
+[node name="RightWall" parent="." instance=ExtResource("3_5lpr1")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24, 0, 0)
+
+[node name="Asteroid" parent="." instance=ExtResource("4_ec72p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.39589)
+axis_lock_linear_y = true
+mass = 1.0
+impulseStrength = 0.0
+
+[editable path="BottomWall"]
+[editable path="TopWall"]
+[editable path="LeftWall"]
+[editable path="RightWall"]

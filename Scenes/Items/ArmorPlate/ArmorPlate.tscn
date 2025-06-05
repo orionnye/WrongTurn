@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bana6cjlpxejh"]
+
+[ext_resource type="Material" uid="uid://c8syx2a7at1sc" path="res://Assets/Materials/ArmorPlate.tres" id="1_ffwbw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_b0sp1"]
+size = Vector3(1, 0.1, 1)
+
+[node name="ArmorPlate" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_b0sp1")
+surface_material_override/0 = ExtResource("1_ffwbw")

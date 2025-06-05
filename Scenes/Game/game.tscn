@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgc3ee4n08sdp"]
+
+[ext_resource type="Script" uid="uid://du33sh6qvj8oi" path="res://Scenes/Game/Game.cs" id="1_mv0hc"]
+[ext_resource type="PackedScene" uid="uid://crmpc2h7s6xo8" path="res://Scenes/Environments/Home/Home.tscn" id="2_qxfds"]
+[ext_resource type="PackedScene" uid="uid://cxf3hhyv786gy" path="res://Scenes/Environments/Rails/Rails.tscn" id="3_qikps"]
+[ext_resource type="PackedScene" uid="uid://b73kiv4kng3ib" path="res://Scenes/Environments/Shop/Shop.tscn" id="4_i1e5p"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_mv0hc")
+home = ExtResource("2_qxfds")
+shop = ExtResource("4_i1e5p")
+rails = ExtResource("3_qikps")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 256.0
+offset_bottom = 142.0
+text = "Carry On"
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

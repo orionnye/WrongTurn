@@ -1,0 +1,176 @@
+[gd_scene load_steps=18 format=3 uid="uid://cxhf3nh4k4qrv"]
+
+[ext_resource type="Script" uid="uid://cpcegn47nlqiu" path="res://Scenes/User/Controls.cs" id="1_npl8l"]
+[ext_resource type="Script" uid="uid://bjdtwe288syym" path="res://Scenes/User/Ui.cs" id="2_u75wt"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_le6ck"]
+albedo_color = Color(0.541176, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ai2up"]
+material = SubResource("StandardMaterial3D_le6ck")
+size = Vector3(1, 0.8, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_npl8l"]
+size = Vector3(0.9, 0.4, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u75wt"]
+albedo_color = Color(0.520269, 1.49807e-06, 3.36915e-07, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_frh12"]
+top_radius = 0.2
+bottom_radius = 0.2
+height = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_upttd"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0fp5e"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ghs06"]
+top_radius = 0.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ltlw5"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ai2up"]
+size = Vector3(1, 1, 2.68323)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_npl8l"]
+lifetime_randomness = 0.2
+direction = Vector3(0, 0, 0)
+spread = 18.976
+initial_velocity_min = 5.0
+initial_velocity_max = 6.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.0
+scale_max = 3.0
+scale_over_velocity_max = 5.0
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.4
+collision_use_scale = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_npl8l"]
+transparency = 1
+albedo_color = Color(0, 1, 1, 0.356863)
+emission_enabled = true
+emission = Color(0, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_u75wt"]
+material = SubResource("StandardMaterial3D_npl8l")
+radius = 0.2
+height = 0.5
+
+[sub_resource type="BoxMesh" id="BoxMesh_u75wt"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_frh12"]
+transparency = 1
+albedo_color = Color(1, 1, 0, 0.541176)
+roughness = 0.13
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[node name="User" type="RigidBody3D" node_paths=PackedStringArray("inputNode")]
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+gravity_scale = 0.0
+script = ExtResource("1_npl8l")
+inputNode = NodePath("InputOffset/Input")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ai2up")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20196, -1.13691)
+mesh = SubResource("BoxMesh_npl8l")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_u75wt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.314185, -1.08195)
+mesh = SubResource("CylinderMesh_frh12")
+surface_material_override/0 = SubResource("StandardMaterial3D_upttd")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, -0.314185, 0.613472)
+mesh = SubResource("CylinderMesh_frh12")
+surface_material_override/0 = SubResource("StandardMaterial3D_0fp5e")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 0.143285, -0.989681, 0, 0.989681, 0.143285, 0, 0.00649488, 1.71503)
+visible = false
+mesh = SubResource("CylinderMesh_ghs06")
+surface_material_override/0 = SubResource("StandardMaterial3D_ltlw5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.277039)
+shape = SubResource("BoxShape3D_ai2up")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.17984)
+amount = 32
+lifetime = 0.2
+process_material = SubResource("ParticleProcessMaterial_npl8l")
+draw_pass_1 = SubResource("SphereMesh_u75wt")
+
+[node name="UI" type="Control" parent="." node_paths=PackedStringArray("fuelMeter")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_u75wt")
+fuelMeter = NodePath("Control/FuelMeter")
+
+[node name="Control" type="Control" parent="UI"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="FuelMeter" type="ProgressBar" parent="UI/Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -27.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="UserScore" type="Label" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = 581.0
+offset_right = 171.0
+offset_bottom = 608.0
+grow_vertical = 0
+text = "Numbers appear here"
+
+[node name="InputOffset" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.29901)
+
+[node name="Input" type="Node3D" parent="InputOffset"]
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="InputOffset/Input"]
+mesh = SubResource("BoxMesh_u75wt")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_frh12")

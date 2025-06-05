@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxmb7mu0py4h8"]
+
+[ext_resource type="PackedScene" uid="uid://b7s0bpk4wabv5" path="res://Scenes/Tools/Spawner/spawner.tscn" id="1_vkrrr"]
+[ext_resource type="PackedScene" uid="uid://c8k7cvr2fkwdj" path="res://Scenes/Units/Asteroid/AsteroidSmall.tscn" id="2_yu4qa"]
+
+[node name="AsteroidSmallCluster" type="Node3D"]
+
+[node name="AsteroidSmallSpawner" parent="." instance=ExtResource("1_vkrrr")]
+sceneToSpawn = ExtResource("2_yu4qa")
+spawnDim = Vector3(3, 0, 0)
+
+[node name="Timer" parent="AsteroidSmallSpawner" index="0"]
+wait_time = 0.28
+
+[node name="AsteroidSmallSpawner2" parent="." instance=ExtResource("1_vkrrr")]
+sceneToSpawn = ExtResource("2_yu4qa")
+spawnDim = Vector3(5, 0, 0)
+
+[node name="Timer" parent="AsteroidSmallSpawner2" index="0"]
+wait_time = 0.33
+
+[node name="AsteroidSmallSpawner3" parent="." instance=ExtResource("1_vkrrr")]
+sceneToSpawn = ExtResource("2_yu4qa")
+spawnDim = Vector3(1, 0, 0)
+
+[node name="Timer" parent="AsteroidSmallSpawner3" index="0"]
+wait_time = 3.6
+
+[node name="AsteroidSmallSpawner4" parent="." instance=ExtResource("1_vkrrr")]
+sceneToSpawn = ExtResource("2_yu4qa")
+spawnDim = Vector3(3, 0, 0)
+
+[node name="Timer" parent="AsteroidSmallSpawner4" index="0"]
+wait_time = 0.39
+
+[node name="AsteroidSmallSpawner5" parent="." instance=ExtResource("1_vkrrr")]
+sceneToSpawn = ExtResource("2_yu4qa")
+spawnDim = Vector3(5, 0, 0)
+
+[node name="Timer" parent="AsteroidSmallSpawner5" index="0"]
+wait_time = 0.42
+
+[node name="AsteroidSmallSpawner6" parent="." instance=ExtResource("1_vkrrr")]
+sceneToSpawn = ExtResource("2_yu4qa")
+spawnDim = Vector3(1, 0, 0)
+
+[node name="Timer" parent="AsteroidSmallSpawner6" index="0"]
+wait_time = 4.5
+
+[editable path="AsteroidSmallSpawner"]
+[editable path="AsteroidSmallSpawner2"]
+[editable path="AsteroidSmallSpawner3"]
+[editable path="AsteroidSmallSpawner4"]
+[editable path="AsteroidSmallSpawner5"]
+[editable path="AsteroidSmallSpawner6"]

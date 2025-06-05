@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://duudcg2xfplv3"]
+
+[ext_resource type="Script" uid="uid://cadmrq70swkt3" path="res://Scenes/Tools/NodeCloud/NodeCloud.cs" id="1_6u155"]
+[ext_resource type="PackedScene" uid="uid://bana6cjlpxejh" path="res://Scenes/Items/ArmorPlate/ArmorPlate.tscn" id="2_ysj0k"]
+
+[node name="NodeCloud" type="Node3D"]
+script = ExtResource("1_6u155")
+Node = ExtResource("2_ysj0k")

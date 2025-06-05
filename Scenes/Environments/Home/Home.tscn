@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://crmpc2h7s6xo8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yb3gm"]
+size = Vector3(3.21, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vnhe7"]
+albedo_color = Color(0.174626, 0.174626, 0.174626, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yb3gm"]
+albedo_color = Color(0.370364, 0.370364, 0.370364, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gdx1l"]
+material = SubResource("StandardMaterial3D_yb3gm")
+size = Vector3(1, 0.51, 0.77)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vwm2j"]
+size = Vector3(1, 0.57, 1.25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4wkc7"]
+albedo_color = Color(0.325441, 0.325441, 0.325441, 1)
+
+[node name="Home" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.1, 0, 0, 0, 2.1, 0, 0, 0, 2.1, -2.69623, 0.430529, -3.39784)
+mesh = SubResource("BoxMesh_yb3gm")
+surface_material_override/0 = SubResource("StandardMaterial3D_vnhe7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.998888, 0.0471413, 0, -0.0471413, 0.998888, 0, 0, 0, 1, 1.31042, -0.356351, 0)
+mesh = SubResource("BoxMesh_gdx1l")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="MeshInstance3D"]
+transform = Transform3D(0.999538, 0.0303815, 0, -0.0303815, 0.999538, 0, 0, 0, 1, -0.690798, -0.358328, 0)
+mesh = SubResource("BoxMesh_vwm2j")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_4wkc7")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.616986, -0.149094, 0.772722, 0.0338208, 0.986006, 0.163242, -0.786247, -0.0745842, 0.613395, 1.63686, 1.32675, 2.39382)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.654424, 0.606584, -0.451426, 0, 0.597023, 0.802224, 0.756128, -0.524995, 0.390706, -2.16091, 0, 1.81072)

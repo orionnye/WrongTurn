@@ -1,0 +1,101 @@
+[gd_scene load_steps=9 format=3 uid="uid://b73kiv4kng3ib"]
+
+[ext_resource type="Script" uid="uid://1gv67daw31p" path="res://Scenes/Environments/Shop/Shop.cs" id="1_8n4oj"]
+[ext_resource type="PackedScene" uid="uid://cxhf3nh4k4qrv" path="res://Scenes/User/User.tscn" id="2_vfbhb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jwgys"]
+size = Vector3(5, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8n4oj"]
+size = Vector3(0.27, 0.23, 0.42)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jwgys"]
+radius = 0.2
+height = 0.7
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dopl1"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_jwgys"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_8n4oj"]
+
+[node name="Shop" type="Node3D" node_paths=PackedStringArray("button")]
+script = ExtResource("1_8n4oj")
+button = NodePath("Control/Button")
+
+[node name="BarShelf" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.46, 0, 0, 0, 0.46, 0, 0, 0, 0.46, 0.65079, 0.401765, -1.33931)
+mesh = SubResource("BoxMesh_jwgys")
+
+[node name="Items" type="Node3D" parent="BarShelf"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.62805, 1.05062, -0.15978)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BarShelf/Items"]
+transform = Transform3D(-0.546518, 0.572132, -0.611542, -0.822235, -0.228036, 0.521469, 0.158895, 0.787823, 0.595053, -0.108868, -0.104649, 0)
+mesh = SubResource("BoxMesh_8n4oj")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="BarShelf/Items"]
+transform = Transform3D(-0.922606, 0.333062, -0.194598, -0.362473, -0.575977, 0.73271, 0.131954, 0.746539, 0.652125, 0.847818, -0.104649, 0)
+mesh = SubResource("CapsuleMesh_jwgys")
+surface_material_override/0 = SubResource("ShaderMaterial_dopl1")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="BarShelf/Items"]
+transform = Transform3D(0.875751, 0.0482542, -0.480344, 0.210421, 0.857349, 0.469761, 0.434491, -0.512469, 0.740671, 1.71375, -0.104649, 0)
+mesh = SubResource("PrismMesh_jwgys")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BarShelf"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.87588, 0.667969, -1.28807)
+mesh = SubResource("CapsuleMesh_8n4oj")
+skeleton = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.999542, -0.0302594, 0, 0.0302594, 0.999542, 0.441329, 0.759249, 0.25991)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.43696, 2.75773, -0.751138)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68495, 2.75773, -0.751138)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -213.0
+offset_top = -54.0
+offset_bottom = 54.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "Hey, I'm the Market!
+Let's take our loot home and strategize!"
+
+[node name="Button2" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -281.0
+offset_top = -112.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Hey, can we increase User speed?"
+
+[node name="User" parent="." instance=ExtResource("2_vfbhb")]
+transform = Transform3D(-0.771125, 0, 0.636684, 0, 1, 0, -0.636684, 0, -0.771125, -0.919262, 0.531971, -3.09797)
+
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/Button2" to="." method="_on_button_2_pressed"]

@@ -1,0 +1,121 @@
+[gd_scene load_steps=10 format=3 uid="uid://biuhv7nm1dgf4"]
+
+[ext_resource type="Script" uid="uid://bmnjtalwpo1yg" path="res://Scenes/Environments/Level/Level.cs" id="1_1qaxs"]
+[ext_resource type="PackedScene" uid="uid://b7s0bpk4wabv5" path="res://Scenes/Tools/Spawner/spawner.tscn" id="1_67y0n"]
+[ext_resource type="PackedScene" uid="uid://bnikhqait62ig" path="res://Scenes/Units/Asteroid/Asteroid.tscn" id="2_k4f5q"]
+[ext_resource type="PackedScene" uid="uid://dxmb7mu0py4h8" path="res://Scenes/Environments/Components/asteroid_small_cluster.tscn" id="2_xcy7a"]
+[ext_resource type="PackedScene" uid="uid://cxhf3nh4k4qrv" path="res://Scenes/User/User.tscn" id="2_yjaij"]
+[ext_resource type="PackedScene" uid="uid://bnqic7rsgxp4w" path="res://Scenes/Units/Asteroid/AsteroidLarge.tscn" id="4_8xax7"]
+[ext_resource type="PackedScene" uid="uid://lm2mqeiblwr6" path="res://Scenes/Tools/SpeedoMeter/SpeedoMeter.tscn" id="6_1qaxs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1qaxs"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8xax7"]
+material = SubResource("StandardMaterial3D_1qaxs")
+
+[node name="Level" type="Node3D" node_paths=PackedStringArray("speedoMeter")]
+script = ExtResource("1_1qaxs")
+speedoMeter = NodePath("SpeedoMeter")
+
+[node name="Asteroids" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5.60014)
+
+[node name="AsteroidSmallCluster" parent="Asteroids" instance=ExtResource("2_xcy7a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.1136, 0, -16.1197)
+
+[node name="AsteroidSmallSpawner" parent="Asteroids/AsteroidSmallCluster" index="0"]
+spawnDim = Vector3(6, 0, 0)
+
+[node name="AsteroidSmallSpawner2" parent="Asteroids/AsteroidSmallCluster" index="1"]
+spawnDim = Vector3(10, 0, 0)
+
+[node name="AsteroidSmallSpawner3" parent="Asteroids/AsteroidSmallCluster" index="2"]
+spawnDim = Vector3(9, 0, 0)
+
+[node name="Timer" parent="Asteroids/AsteroidSmallCluster/AsteroidSmallSpawner3" index="0"]
+wait_time = 0.5
+
+[node name="AsteroidSmallCluster2" parent="Asteroids" instance=ExtResource("2_xcy7a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.9358, 0, -16.1197)
+
+[node name="AsteroidSmallSpawner" parent="Asteroids/AsteroidSmallCluster2" index="0"]
+spawnDim = Vector3(6, 0, 0)
+
+[node name="AsteroidSmallSpawner2" parent="Asteroids/AsteroidSmallCluster2" index="1"]
+spawnDim = Vector3(10, 0, 0)
+
+[node name="AsteroidSmallSpawner3" parent="Asteroids/AsteroidSmallCluster2" index="2"]
+spawnDim = Vector3(9, 0, 0)
+
+[node name="Timer" parent="Asteroids/AsteroidSmallCluster2/AsteroidSmallSpawner3" index="0"]
+wait_time = 0.5
+
+[node name="AsteroidSpawner" parent="Asteroids" instance=ExtResource("1_67y0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.234762, 0, -14.7863)
+sceneToSpawn = ExtResource("2_k4f5q")
+spawnDim = Vector3(18, 0, 0)
+
+[node name="Timer" parent="Asteroids/AsteroidSpawner" index="0"]
+wait_time = 0.8
+
+[node name="AsteroidSpawner2" parent="Asteroids" instance=ExtResource("1_67y0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.234762, 0, -14.7863)
+sceneToSpawn = ExtResource("2_k4f5q")
+spawnDim = Vector3(18, 0, 0)
+
+[node name="Timer" parent="Asteroids/AsteroidSpawner2" index="0"]
+wait_time = 0.7
+
+[node name="AsteroidLargeSpawner" parent="Asteroids" instance=ExtResource("1_67y0n")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.234762, 0, -14.7863)
+sceneToSpawn = ExtResource("4_8xax7")
+spawnDim = Vector3(12, 0, 0)
+
+[node name="Timer" parent="Asteroids/AsteroidLargeSpawner" index="0"]
+wait_time = 3.0
+
+[node name="User" parent="." instance=ExtResource("2_yjaij")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.294578)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 17.3226, 0)
+
+[node name="SpeedoMeter" parent="." node_paths=PackedStringArray("minNode", "maxNode", "hostNode") instance=ExtResource("6_1qaxs")]
+minNode = NodePath("../Start")
+maxNode = NodePath("../Finish")
+hostNode = NodePath("../User")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.663717, -0.441837, -0.603539, 0.747983, 0.392061, 0.535546, 0, -0.806888, 0.590704, -10.1844, 0, 6.74226)
+
+[node name="Finish" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -13)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Finish"]
+mesh = SubResource("BoxMesh_8xax7")
+
+[node name="Start" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Start"]
+mesh = SubResource("BoxMesh_8xax7")
+skeleton = NodePath("../../Finish")
+
+[editable path="Asteroids/AsteroidSmallCluster"]
+[editable path="Asteroids/AsteroidSmallCluster/AsteroidSmallSpawner"]
+[editable path="Asteroids/AsteroidSmallCluster/AsteroidSmallSpawner2"]
+[editable path="Asteroids/AsteroidSmallCluster/AsteroidSmallSpawner3"]
+[editable path="Asteroids/AsteroidSmallCluster/AsteroidSmallSpawner4"]
+[editable path="Asteroids/AsteroidSmallCluster/AsteroidSmallSpawner5"]
+[editable path="Asteroids/AsteroidSmallCluster/AsteroidSmallSpawner6"]
+[editable path="Asteroids/AsteroidSmallCluster2"]
+[editable path="Asteroids/AsteroidSmallCluster2/AsteroidSmallSpawner"]
+[editable path="Asteroids/AsteroidSmallCluster2/AsteroidSmallSpawner2"]
+[editable path="Asteroids/AsteroidSmallCluster2/AsteroidSmallSpawner3"]
+[editable path="Asteroids/AsteroidSmallCluster2/AsteroidSmallSpawner4"]
+[editable path="Asteroids/AsteroidSmallCluster2/AsteroidSmallSpawner5"]
+[editable path="Asteroids/AsteroidSmallCluster2/AsteroidSmallSpawner6"]
+[editable path="Asteroids/AsteroidSpawner"]
+[editable path="Asteroids/AsteroidSpawner2"]
+[editable path="Asteroids/AsteroidLargeSpawner"]
